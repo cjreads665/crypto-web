@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import "@material-tailwind/react/tailwind.css";
 import Header from './components/Header'
 import Homepage from './components/Homepage'
 import Coinpage from './components/Coinpage'

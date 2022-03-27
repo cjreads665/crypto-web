@@ -24,13 +24,15 @@ const Carousal = () => {
 	const items = trending.map(coin=>{
 		const link = `/coins/${coin.id}`
 		const img = coin.image
+		const profitLoss = `${coin.price_change_percentage_24h>=0? 'text-green-500' : 'text-red-500' }`
 		return (
 			<a href={link}>
 			<span className='flex flex-col items-center'>
 				<img className='w-16 text-center' src={img} alt=""/>
-				<span className='text-center uppercase'>{coin.symbol}</span>	
+				<span className='text-center uppercase font-bold mt-2'>{coin.symbol}</span>	
 				<span className='text-center capitalize'>{coin.id}</span>		
-				<span className='text-center capitalize'>{symbol} {coin.current_price}</span>		
+				<span className='text-center capitalize'>{symbol} {coin.current_price}</span>
+				<span className={profitLoss} > {coin.price_change_percentage_24h.toFixed(3)}% </span>		
 			</span>
 			</a>
 			)

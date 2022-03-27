@@ -4,11 +4,11 @@ import {createContext, useState,useEffect} from 'react'
 const CrypCon = createContext()
 
 const CryptoContext = ({children}) => {
-	const [currency, setCurrency] = useState('INR')
+	const [currency, setCurrency] = useState('inr')
 	const [symbol, setSymbol] = useState('₹')
 
 	useEffect(() => {
-		if(currency=='INR') setSymbol('₹')
+		if(currency=='inr') setSymbol('₹')
 			else setSymbol('$')
 	}, [currency])
 

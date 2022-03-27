@@ -44,7 +44,7 @@ const Carousal = () => {
 	}, [currency])
 	return (
 		<div>
-			{/*<AliceCarousel
+			<AliceCarousel
 			mouseTracking
 			infinite
 			autoPlayInterval={1000}
@@ -55,7 +55,7 @@ const Carousal = () => {
 			items={items}
 			disableButtonsControls
 			className="h-8 mt-8"
-			/>*/}
+			/>
 		</div>
 	)
 }

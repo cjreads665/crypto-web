@@ -2,7 +2,6 @@ import React, {useContext, useState, useEffect} from 'react'
 import axios from 'axios'
 import {TrendingCoins} from '../config/api'
 import {CrypCon} from '../context/CryptoContext'
-import AliceCarousel from 'react-alice-carousel';
 
 const Carousal = () => {
 
@@ -44,18 +43,7 @@ const Carousal = () => {
 	}, [currency])
 	return (
 		<div>
-			<AliceCarousel
-			mouseTracking
-			infinite
-			autoPlayInterval={1000}
-			animationDuration={2000}
-			disableDotsControls
-			responsive={responsiveObj}
-			autoPlay
-			items={items}
-			disableButtonsControls
-			className="h-8 mt-8"
-			/>
+			hi
 		</div>
 	)
 }

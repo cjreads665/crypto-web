@@ -5,7 +5,7 @@ import {CrypCon} from '../context/CryptoContext'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import {Autoplay} from 'swiper'
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Carousal = () => {
@@ -23,7 +23,7 @@ const Carousal = () => {
 		const profitLoss = `${coin.price_change_percentage_24h>=0? 'text-green-500' : 'text-red-500' }`
 		return (
 			
-			<SwiperSlide>
+			<SwiperSlide key={uuidv4()}>
 			<span >
 			<a href={link} className='flex flex-col items-center w-32'>
 				<img className='w-2/4 text-center' src={img} alt=""/>

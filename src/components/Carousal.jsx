@@ -49,9 +49,13 @@ const Carousal = () => {
     0: {
       slidesPerView: 2,
     },
+    480:{
+    	slidesPerView:4,
+    },
     768: {
       slidesPerView: 5,
     },
+
   }}
       spaceBetween={50}
      modules={[Autoplay]}

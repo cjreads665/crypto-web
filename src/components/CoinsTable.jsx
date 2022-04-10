@@ -2,12 +2,15 @@ import React,{useState, useContext, useEffect} from 'react'
 import {CoinList} from '../config/api'
 import {CrypCon} from '../context/CryptoContext'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 const CoinsTable = () => {
-	const {currency} = useContext(CrypCon)
+	const {currency,symbol} = useContext(CrypCon)
 	const [coins, setCoins] = useState([])
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const [search, setSearch] = useState('')
 	const fetchCoins = async ()=>{
 		const {data} = await axios.get(CoinList(currency))
@@ -17,10 +20,13 @@ const CoinsTable = () => {
 	}
 
 	const handleSearch=()=>{
-		return coins.filter
+		return coins.filter(coin=>
+			coin.name.toLowerCase().includes(search) ||
+			coin.symbol.toLowerCase().includes(search)
+			)
 	}
 
-
+	
 	useEffect(()=>{
 		fetchCoins()
 	},[currency])
@@ -34,7 +40,7 @@ const CoinsTable = () => {
 			 />
 
 			{/* table */}
-			 <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+			 <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-6 mt-2">
 			
 			 {loading? <svg role="status" className="inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -45,38 +51,47 @@ const CoinsTable = () => {
 			 {/*text-amber-500*/}
         <thead className="text-xs text-yellow-500 uppercase bg-neutral-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="p-2">
                     Coin
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="p-2">
                     Price
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="p-2">
                     24h Change
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="p-2">
                     Market Cap
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium  dark:text-white whitespace-nowrap">
-                    lo
+        
+        {handleSearch().map(coin=>{
+        	// console.log(coin)
+        	let change =coin.price_change_percentage_24h.toFixed(3)
+        	let changeStyles = `${change>0?'text-green-500' : 'text-red-500'}`
+        	let path = `coins/${coin.name}`
+        	
+        	return  <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700 font-inter" key={coin.symbol}>
+                <th scope="row" className=" font-medium p-3 dark:text-white">
+                    <img src={coin.image} alt={coin.name} className='w-1/4'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span>
                 </th>
-                <td className="px-6 py-4">
-                    Sliver
+                <td className="">
+                    {symbol+coin.current_price}
                 </td>
-                <td className="px-6 py-4">
-                    Laptop
+                <td className={changeStyles}>
+                   {change}%
                 </td>
-                <td className="px-6 py-4">
-                    $2999
+                <td className="">
+                    {symbol}{coin.market_cap_change_24h}
                 </td>
+             
             </tr>
+        })}
         </tbody>
     </table>}
-			    
+			 <button>1</button>   
 </div>
 
 			

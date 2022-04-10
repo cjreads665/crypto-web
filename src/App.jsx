@@ -9,7 +9,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <div className='bg-zinc-800 h-screen text-white font-sans min-h-full'>
+    <div className='bg-zinc-800 text-white font-sans min-h-screen'>
     <Header/>
     <Routes>
     <Route path='/' exact element={<Homepage/>} />

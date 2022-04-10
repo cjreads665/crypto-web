@@ -1,5 +1,5 @@
 import React,{useState, useContext, useEffect} from 'react'
-import {CoinList} from '../config/api'
+import {CoinList, test} from '../config/api'
 import {CrypCon} from '../context/CryptoContext'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
@@ -19,6 +19,12 @@ const CoinsTable = () => {
 		setLoading(false)
 	}
 
+	const fetchTest = async ()=>{
+		const {data} = await axios.get(test())
+		// console.log(data)
+	}
+
+
 	const handleSearch=()=>{
 		return coins.filter(coin=>
 			coin.name.toLowerCase().includes(search) ||
@@ -29,13 +35,14 @@ const CoinsTable = () => {
 	
 	useEffect(()=>{
 		fetchCoins()
+		fetchTest()
 	},[currency])
 	return (
-		<div className='flex justify-around flex-col items-center font-sans h-64 mt-4'>
+		<div className='flex justify-around flex-col items-center font-sans h-[30rem] mt-4'>
 			<h3 className='text-2xl' >Coins Listed By Market Cap</h3>
 			<input type="text"
 			className='bg-zinc-900 h-12 rounded p-4'
-			placeholder='Search for coin here...' 
+			placeholder='Search among top 100 coins here...' 
 			onChange={(e)=>setSearch(e.target.value)}
 			 />
 
@@ -69,13 +76,14 @@ const CoinsTable = () => {
         
         {handleSearch().map(coin=>{
         	// console.log(coin)
-        	let change =coin.price_change_percentage_24h.toFixed(3)
+        	let change =coin.price_change_percentage_24h
         	let changeStyles = `${change>0?'text-green-500' : 'text-red-500'}`
-        	let path = `coins/${coin.name}`
+        	let path = `coins/${coin.name.toLowerCase()}`
         	
-        	return  <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700 font-inter" key={coin.symbol}>
+        	return  <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700 font-intert" key={coin.symbol}>
+
                 <th scope="row" className=" font-medium p-3 dark:text-white">
-                    <img src={coin.image} alt={coin.name} className='w-1/4'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span>
+                    <Link to={path}> <img src={coin.image} alt={coin.name} className='w-1/4'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span></Link>
                 </th>
                 <td className="">
                     {symbol+coin.current_price}
@@ -86,7 +94,7 @@ const CoinsTable = () => {
                 <td className="">
                     {symbol}{coin.market_cap_change_24h}
                 </td>
-             
+            
             </tr>
         })}
         </tbody>

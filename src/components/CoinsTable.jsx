@@ -19,10 +19,13 @@ const CoinsTable = () => {
 		setLoading(false)
 	}
 
+	// console.log(coins)
+
 	const fetchTest = async ()=>{
 		const {data} = await axios.get(test())
 		// console.log(data)
 	}
+
 
 
 	const handleSearch=()=>{
@@ -92,7 +95,7 @@ const CoinsTable = () => {
                    {change}%
                 </td>
                 <td className="">
-                    {symbol}{coin.market_cap_change_24h}
+                    {symbol}{coin.market_cap}
                 </td>
             
             </tr>

@@ -43,7 +43,7 @@ const CoinsTable = () => {
 			<input type="text"
 			className='bg-zinc-900 h-12 rounded p-4'
 			placeholder='Search among top 100 coins here...' 
-			onChange={(e)=>setSearch(e.target.value)}
+			onChange={(e)=>setSearch(e.target.value.toLowerCase())}
 			 />
 
 			{/* table */}

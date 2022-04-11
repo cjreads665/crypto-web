@@ -1,5 +1,5 @@
 import React,{useState, useContext, useEffect} from 'react'
-import {CoinList, test} from '../config/api'
+import {CoinList} from '../config/api'
 import {CrypCon} from '../context/CryptoContext'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
@@ -19,35 +19,37 @@ const CoinsTable = () => {
 		setLoading(false)
 	}
 
-	// console.log(coins)
+	console.log()
 
-	const fetchTest = async ()=>{
-		const {data} = await axios.get(test())
-		// console.log(data)
-	}
 
 
 
 	const handleSearch=()=>{
+		
 		return coins.filter(coin=>
 			coin.name.toLowerCase().includes(search) ||
 			coin.symbol.toLowerCase().includes(search)
 			)
-	}
+				}
 
 	
 	useEffect(()=>{
 		fetchCoins()
-		fetchTest()
 	},[currency])
 	return (
 		<div className='flex justify-around flex-col items-center font-sans h-[30rem] mt-4'>
 			<h3 className='text-2xl' >Coins Listed By Market Cap</h3>
-			<input type="text"
+			<div className='flex flex-row'>
+				<input type="text"
 			className='bg-zinc-900 h-12 rounded p-4'
-			placeholder='Search among top 100 coins here...' 
+			placeholder='Search coin' 
 			onChange={(e)=>setSearch(e.target.value.toLowerCase())}
 			 />
+			 <div className='bg-[#3d80b8] h-full rounded w-10 flex justify-center items-center'>
+			<button><i className="fa-solid fa-magnifying-glass"></i></button>
+			 </div>
+			</div>
+			
 
 			{/* table */}
 			 <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-6 mt-2">
@@ -77,7 +79,8 @@ const CoinsTable = () => {
         </thead>
         <tbody>
         
-        {handleSearch().map(coin=>{
+        {
+        	coins.map(coin=>{
         	// console.log(coin)
         	let change =coin.price_change_percentage_24h
         	let changeStyles = `${change>0?'text-green-500' : 'text-red-500'}`
@@ -99,10 +102,10 @@ const CoinsTable = () => {
                 </td>
             
             </tr>
-        })}
+        }) }
         </tbody>
     </table>}
-			 <button>1</button>   
+			
 </div>
 
 			

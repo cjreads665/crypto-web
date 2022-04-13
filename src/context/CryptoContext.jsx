@@ -6,14 +6,14 @@ const CrypCon = createContext()
 const CryptoContext = ({children}) => {
 	const [currency, setCurrency] = useState('inr')
 	const [symbol, setSymbol] = useState('₹')
-
+	const [query, setQuery] = useState()
 	useEffect(() => {
 		if(currency=='inr') setSymbol('₹')
 			else setSymbol('$')
 	}, [currency])
 
 	return (
-		<CrypCon.Provider value={{currency,symbol,setCurrency}} >
+		<CrypCon.Provider value={{currency,symbol,setCurrency,query,setQuery}} >
 			{children}
 		</CrypCon.Provider>
 	)

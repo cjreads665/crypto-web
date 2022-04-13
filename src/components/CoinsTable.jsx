@@ -8,8 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const CoinsTable = () => {
-	const {currency,symbol} = useContext(CrypCon)
+	const {currency,symbol,query,setQuery} = useContext(CrypCon)
 	const [coins, setCoins] = useState([])
+	let [list, setList] = useState()
 	const [loading, setLoading] = useState(true)
 	const [search, setSearch] = useState('')
 	const fetchCoins = async ()=>{
@@ -18,35 +19,50 @@ const CoinsTable = () => {
 		setCoins(data)
 		setLoading(false)
 	}
-
-	console.log()
-
-
+	
+	let k;
 
 
-	const handleSearch=()=>{
-		
-		return coins.filter(coin=>
-			coin.name.toLowerCase().includes(search) ||
-			coin.symbol.toLowerCase().includes(search)
-			)
-				}
+
+	const handleSearch= async ()=>{
+		let searchUrl = `https://api.coingecko.com/api/v3/search?query=${search}`
+		const {data} = await axios.get(searchUrl)
+		// console.log(data.coins)
+		list=data.coins.map(obj=>{
+			return <li>{obj.name}</li>
+		})
+		// console.log(list)
+	
+		}
 
 	
 	useEffect(()=>{
 		fetchCoins()
 	},[currency])
+
+	useEffect(()=>{
+		handleSearch()
+		console.log(list)
+	},[search])
+
 	return (
 		<div className='flex justify-around flex-col items-center font-sans h-[30rem] mt-4'>
 			<h3 className='text-2xl' >Coins Listed By Market Cap</h3>
 			<div className='flex flex-row'>
+
 				<input type="text"
 			className='bg-zinc-900 h-12 rounded p-4'
 			placeholder='Search coin' 
-			onChange={(e)=>setSearch(e.target.value.toLowerCase())}
+			onChange={(e)=>{
+				setSearch(e.target.value.toLowerCase())
+			}}
 			 />
+			 <ul>
+			 	{list}
+			 </ul>
+
 			 <div className='bg-[#3d80b8] h-full rounded w-10 flex justify-center items-center'>
-			<button><i className="fa-solid fa-magnifying-glass"></i></button>
+			<button onClick={search==''? null: handleSearch}><i className="fa-solid fa-magnifying-glass"></i></button>
 			 </div>
 			</div>
 			

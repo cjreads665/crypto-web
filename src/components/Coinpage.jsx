@@ -25,7 +25,7 @@ const Coinpage = () => {
 	}, [currency])
 
 	return ( 
-		<div></div>
+		<div>CoinPage</div>
 	)
 }
 

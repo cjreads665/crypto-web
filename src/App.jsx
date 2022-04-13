@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Header from './components/Header'
 import Homepage from './components/Homepage'
 import Coinpage from './components/Coinpage'
+import Searchpage from './components/Searchpage'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Routes>
     <Route path='/' exact element={<Homepage/>} />
     <Route path='/coins/:id' element={<Coinpage/>} />
+    <Route path='/search/:name' element={<Searchpage/>} />
     </Routes>
     </div>
     </BrowserRouter>

@@ -20,34 +20,23 @@ const CoinsTable = () => {
 		setLoading(false)
 	}
 	
-	let k;
 
 
 
 	const handleSearch= async ()=>{
 		let searchUrl = `https://api.coingecko.com/api/v3/search?query=${search}`
 		const {data} = await axios.get(searchUrl)
-		// console.log(data.coins)
-		list=data.coins.map(obj=>{
-			return <li>{obj.name}</li>
-		})
-		// console.log(list)
-	
 		}
 
-	
 	useEffect(()=>{
 		fetchCoins()
 	},[currency])
 
-	useEffect(()=>{
-		handleSearch()
-		console.log(list)
-	},[search])
+	
 
 	return (
 		<div className='flex justify-around flex-col items-center font-sans h-[30rem] mt-4'>
-			<h3 className='text-2xl' >Coins Listed By Market Cap</h3>
+			
 			<div className='flex flex-row'>
 
 				<input type="text"
@@ -57,16 +46,16 @@ const CoinsTable = () => {
 				setSearch(e.target.value.toLowerCase())
 			}}
 			 />
-			 <ul>
-			 	{list}
-			 </ul>
 
 			 <div className='bg-[#3d80b8] h-full rounded w-10 flex justify-center items-center'>
-			<button onClick={search==''? null: handleSearch}><i className="fa-solid fa-magnifying-glass"></i></button>
+			 <Link to='/search/ssss'> 
+			<button onClick={search==''? null: handleSearch}><i className="fa-solid fa-magnifying-glass"></i>
+			</button>
+			</Link>
 			 </div>
 			</div>
 			
-
+			<h3 className='text-2xl' >Coins Listed By Market Cap</h3>
 			{/* table */}
 			 <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-6 mt-2">
 			

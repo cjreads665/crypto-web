@@ -36,7 +36,7 @@ const Coinpage = () => {
 
 	useEffect(() => {
 		fetchCoin()
-	}, [currency] || coin.market_data.price_change_percentage_1h_in_currency[currency])
+	}, [currency])
 
 	return ( 
 		<div>

@@ -50,12 +50,12 @@ const Coinpage = () => {
 
 				<article className={styles.article}>
 
-					<h2 className='text-4xl font-bold'>{coin.name} <span className='text-2xl text-bold text-zinc-500'>{coin.symbol.toUpperCase()}</span></h2>
+					<h2 className='text-4xl font-bold'>{coin?.name} <span className='text-2xl text-bold text-zinc-500'>{coin.symbol.toUpperCase()}</span></h2>
 
-					<h2 className='text-6xl'>{symbol}{coin.market_data.current_price[currency]} 
+					<h2 className='text-6xl'>{symbol}{coin?.market_data.current_price[currency]} 
 
-					<span className={coin.market_data.price_change_percentage_1h_in_currency[currency]>0? 'text-green-500 text-base' : 'text-red-500 text-base'}
-					>{coin.market_data.price_change_percentage_1h_in_currency[currency].toFixed(2)}%</span></h2>
+					<span className={coin?.market_data.price_change_percentage_1h_in_currency[currency]>0? 'text-green-500 text-base' : 'text-red-500 text-base'}
+					>{coin?.market_data.price_change_percentage_1h_in_currency[currency].toFixed(2)}%</span></h2>
 
 					<p className='px-4 text-center'>
 						{ReactHtmlParser(coin?.description.en.split('. ')[0])}

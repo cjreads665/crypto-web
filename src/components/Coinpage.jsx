@@ -8,7 +8,7 @@ import CoinInfo from './CoinInfo'
 
 const Coinpage = () => {
 
-variables
+//variables
 	const {id} = useParams()
 	const [coin, setCoin] = useState()
 	const [loading, setLoading] = useState(true)

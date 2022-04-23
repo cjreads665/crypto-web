@@ -4,7 +4,7 @@ import {CrypCon} from '../context/CryptoContext'
 import {SingleCoin} from '../config/api'
 import axios from 'axios'
 import CoinInfo from './CoinInfo'
-import ReactHtmlParser from 'react-html-parser'
+// import ReactHtmlParser from 'react-html-parser'
 
 const Coinpage = () => {
 

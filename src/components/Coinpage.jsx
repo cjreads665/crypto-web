@@ -1,42 +1,42 @@
 import React, {useState, useContext,useEffect} from 'react'
-// import {useParams} from 'react-router-dom'
-// import {CrypCon} from '../context/CryptoContext'
-// import {SingleCoin} from '../config/api'
-// import axios from 'axios'
-// import CoinInfo from './CoinInfo'
-// import ReactHtmlParser from 'react-html-parser'
+import {useParams} from 'react-router-dom'
+import {CrypCon} from '../context/CryptoContext'
+import {SingleCoin} from '../config/api'
+import axios from 'axios'
+import CoinInfo from './CoinInfo'
+import ReactHtmlParser from 'react-html-parser'
 
 const Coinpage = () => {
 
-//variables
-// 	const {id} = useParams()
-// 	const [coin, setCoin] = useState()
-// 	const [loading, setLoading] = useState(true)
-// 	const {currency,symbol} = useContext(CrypCon)
-// 	const styles = {
-// 		container: 'flex flex-col items-center md:flex-row h-[30rem]',
-// 		get sidebar(){
-// 			return this.container+' mt-8 h-[100%]'
-// 		},
-// 		get article(){
-// 			return this.container+'mt-2 justify-around h-full'
-// 		},
-// 		priceChange: `text-base `,
-// 		marketData: 'text-2xl'
-// 	}
+variables
+	const {id} = useParams()
+	const [coin, setCoin] = useState()
+	const [loading, setLoading] = useState(true)
+	const {currency,symbol} = useContext(CrypCon)
+	const styles = {
+		container: 'flex flex-col items-center md:flex-row h-[30rem]',
+		get sidebar(){
+			return this.container+' mt-8 h-[100%]'
+		},
+		get article(){
+			return this.container+'mt-2 justify-around h-full'
+		},
+		priceChange: `text-base `,
+		marketData: 'text-2xl'
+	}
 
-// //functions
-// 	const fetchCoin = async ()=>{
-// 		const {data} = await axios.get(SingleCoin(id))
-// 		setCoin(data)
-// 		setLoading(false)
-// 		console.log(data)
-// 	}
+//functions
+	const fetchCoin = async ()=>{
+		const {data} = await axios.get(SingleCoin(id))
+		setCoin(data)
+		setLoading(false)
+		console.log(data)
+	}
 
 
-// 	useEffect(() => {
-// 		fetchCoin()
-// 	}, [currency])
+	useEffect(() => {
+		fetchCoin()
+	}, [currency])
 
 	return ( 
 		<div>

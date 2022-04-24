@@ -4,7 +4,8 @@ import {CrypCon} from '../context/CryptoContext'
 import {SingleCoin} from '../config/api'
 import axios from 'axios'
 import CoinInfo from './CoinInfo'
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 
 const Coinpage = () => {
 
@@ -58,7 +59,7 @@ const Coinpage = () => {
 					>{coin?.market_data.price_change_percentage_1h_in_currency[currency].toFixed(2)}%</span></h2>
 
 					<p className='px-4 text-center'>
-						{ReactHtmlParser(coin?.description.en.split('. ')[0])}
+						{parse(coin?.description.en.split('. ')[0])}
 					</p>
 
 					<div className={styles.marketData}>

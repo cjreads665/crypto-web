@@ -4,7 +4,6 @@ import {CrypCon} from '../context/CryptoContext'
 import {SingleCoin} from '../config/api'
 import axios from 'axios'
 import CoinInfo from './CoinInfo'
-// import ReactHtmlParser from 'react-html-parser';
 import parse from 'html-react-parser';
 
 const Coinpage = () => {
@@ -15,15 +14,15 @@ const Coinpage = () => {
 	const [loading, setLoading] = useState(true)
 	const {currency,symbol} = useContext(CrypCon)
 	const styles = {
-		container: 'flex flex-col items-center md:flex-row h-[30rem]',
+		container: 'flex flex-col items-center md:flex-row h-[35rem]',
 		get sidebar(){
 			return this.container+' mt-8 h-[100%]'
 		},
 		get article(){
-			return this.container+'mt-2 justify-around h-full'
+			return this.container+'mt-2 justify-around h-[30rem]'
 		},
 		priceChange: `text-base `,
-		marketData: 'text-2xl'
+		marketData: 'text-xl'
 	}
 
 //functions
@@ -34,6 +33,9 @@ const Coinpage = () => {
 		console.log(data)
 	}
 
+	function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 	useEffect(() => {
 		fetchCoin()
@@ -53,7 +55,7 @@ const Coinpage = () => {
 
 					<h2 className='text-4xl font-bold'>{coin?.name} <span className='text-2xl text-bold text-zinc-500'>{coin.symbol.toUpperCase()}</span></h2>
 
-					<h2 className='text-6xl'>{symbol}{coin?.market_data.current_price[currency]} 
+					<h2 className='text-5xl'>{symbol}{numberWithCommas(coin?.market_data.current_price[currency])} 
 
 					<span className={coin?.market_data.price_change_percentage_1h_in_currency[currency]>0? 'text-green-500 text-base' : 'text-red-500 text-base'}
 					>{coin?.market_data.price_change_percentage_1h_in_currency[currency].toFixed(2)}%</span></h2>
@@ -63,7 +65,13 @@ const Coinpage = () => {
 					</p>
 
 					<div className={styles.marketData}>
-						<p>Market Cap: {symbol} {coin?.market_data.market_cap[currency]}</p>
+						<p><span className='font-bold'>Market Cap:</span> {symbol} {numberWithCommas(coin?.market_data.market_cap[currency])}</p>
+					</div>
+					<div className={styles.marketData}>
+						<p><span className='font-bold'>Total Volume: </span>{symbol} {numberWithCommas(coin?.market_data.total_volume[currency])}</p>
+					</div>
+					<div className={styles.marketData}>
+						<p>Rank: {coin?.coingecko_rank}</p>
 					</div>
 				</article>
 			</div>

@@ -1,16 +1,19 @@
 import React,{useState,useContext,useEffect} from 'react'
 import {CrypCon} from '../context/CryptoContext'
-import { Doughnut } from 'react-chartjs-2';
-import { Line } from 'react-chartjs-2';
 import {HistoricalChart} from '../config/api'
 import axios from 'axios'
+import { Line } from 'react-chartjs-2';
 
 
 const CoinInfo = (coin) => {
 	const [historicalData, setHistoricalData] = useState()
 	const [days, setDays] = useState(1)
 	const {currency,symbol} = useContext(CrypCon)
-	// console.log(coin)
+	const dataForChart={
+
+	}
+
+	//fetching the data from the historical price api
 	const fetchHistoricData = async() =>{
 		let id = coin.coin.id
 		const {data} = await axios.get(HistoricalChart(id,days,currency))
@@ -20,6 +23,9 @@ const CoinInfo = (coin) => {
 	useEffect(() => {
 		fetchHistoricData()
 	}, [currency,days])
+
+	// console.log(historicalData)
+
 
 
 	return (
@@ -33,20 +39,14 @@ const CoinInfo = (coin) => {
 </svg>: <div>
 				<Line
 				data={{
-					labels: historicalData.map(eachCoin=>{
-						let date= new Date(eachCoin[0])
-						let time = date.getHours()>12? `${date.getHours()-12} PM` : `${date.getHours}AM`
-						return days==1?time : date.toLocaleDateString()
-					}),
-
-					datasets:[
-						{data: historicalData.map(eachCoin=>eachCoin[1])}
-					]
-
+			labels: historicalData.map(coinArr=>{
+			let date = new Date(coinArr[0])
+			console.log(date)
+		})
 				}}
-
 				/>
-</div>
+
+				</div>
 			}
 
 

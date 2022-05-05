@@ -12,22 +12,12 @@ const ConditionalLink = ({ children, to, condition }) => (!!condition && to)
 const CoinsTable = () => {
 
 	//variable declarations
-	const {currency,symbol,query,setQuery} = useContext(CrypCon)
-	const [coins, setCoins] = useState([])
+	const {currency,symbol,query,setQuery,coins, setCoins,loading, setLoading,fetchCoins} = useContext(CrypCon)
 	let [list, setList] = useState()
-	const [loading, setLoading] = useState(true)
 	const [search, setSearch] = useState('')
 	let path = `/search/${search}`
 
-
 	//functions
-	const fetchCoins = async ()=>{
-		const {data} = await axios.get(CoinList(currency))
-		// console.log(data)
-		setCoins(data)
-		setLoading(false)
-	}
-	
 	useEffect(()=>{
 		fetchCoins()
 	},[currency])

@@ -1,6 +1,7 @@
 import React from 'react'
 import {useContext, useEffect} from 'react'
 import CryptoContext, {CrypCon} from '../context/CryptoContext'
+import AuthenModal from './Authentication/AuthenModal'
 const Header = () => {
 	const {currency, setCurrency} = useContext(CrypCon)
 	console.log(currency)
@@ -14,6 +15,7 @@ const Header = () => {
 				<option value="usd">USD</option>
 				<option value="inr">INR</option>
 			</select>
+			<AuthenModal/>
 		</header>
 	)
 }

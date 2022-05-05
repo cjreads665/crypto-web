@@ -16,7 +16,7 @@ const Coinpage = () => {
 	const styles = {
 		container: 'flex flex-col min-h-full items-center md:flex-row',
 		get sidebar(){
-			return this.container+' mt-8 h-[100%]'
+			return this.container+' mt-8 md:mt-0 md:pt-0 h-[100%] md:flex-col'
 		},
 		get article(){
 			return this.container+'mt-2 justify-around h-[30rem]'

@@ -86,7 +86,7 @@ const CoinsTable = () => {
         <tbody>
         
         {
-        	coins.map(coin=>{
+        	coins?.map(coin=>{
         	// console.log(coin)
         	let change =coin.price_change_percentage_24h
         	let changeStyles = `${change>0?'text-green-500' : 'text-red-500'}`

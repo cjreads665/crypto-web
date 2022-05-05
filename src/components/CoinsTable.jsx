@@ -65,7 +65,7 @@ const CoinsTable = () => {
 	<p className="w-1/3 text-center text-white">This may take a few seconds, please don't close this page.</p>
 </div> : 
 
-	<table className="w-full text-left text-gray-500 dark:text-gray-400 m-1">
+	<table className="w-full md:w-[95%] md:ml-12 md:p-4 text-left text-gray-500 dark:text-gray-400 m-1">
 			 {/*text-amber-500*/}
         <thead className="text-xs text-yellow-500 uppercase bg-neutral-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -94,7 +94,7 @@ const CoinsTable = () => {
         	
         	return  <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700 font-intert" key={coin.symbol}>
 
-                <th scope="row" className=" font-medium p-3 dark:text-white">
+                <th scope="row" className=" font-medium p-3 dark:text-white md:w-64">
                     <Link to={path}> <img src={coin.image} alt={coin.name} className='w-1/4'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span></Link>
                 </th>
                 <td className="">

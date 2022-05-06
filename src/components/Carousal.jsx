@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import {Autoplay} from 'swiper'
 import { v4 as uuidv4 } from 'uuid';
+import {Link} from 'react-router-dom'
+
 
 
 const Carousal = () => {
@@ -25,13 +27,13 @@ const Carousal = () => {
 			
 			<SwiperSlide key={uuidv4()}>
 			<span >
-			<a href={link} className='flex flex-col items-center w-32'>
+			<Link to={link} className='flex flex-col items-center w-32'>
 				<img className='w-2/4 text-center' src={img} alt=""/>
 				<span className='text-center uppercase font-bold mt-2'>{coin.symbol}</span>	
 				<span className='text-center capitalize'>{coin.id}</span>		
 				<span className='text-center capitalize'>{symbol} {coin.current_price}</span>
 				<span className={profitLoss} > {coin.price_change_percentage_24h.toFixed(3)}% </span>
-			</a>		
+			</Link>		
 			</span>
 			</SwiperSlide>
 			)

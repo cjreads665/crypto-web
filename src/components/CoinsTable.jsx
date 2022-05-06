@@ -22,8 +22,6 @@ const CoinsTable = () => {
 		fetchCoins()
 	},[currency])
 
-	
-
 	return (
 		<div className='flex justify-around flex-col items-center font-sans h-[30rem] mt-4'>
 			

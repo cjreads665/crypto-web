@@ -57,12 +57,12 @@ const CoinsTable = () => {
 
 	<table className="w-full md:w-[95%] md:ml-12 md:p-4 text-left text-gray-500 dark:text-gray-400 m-1">
 			 {/*text-amber-500*/}
-        <thead className="text-xs text-yellow-500 uppercase bg-neutral-700 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-xs text-yellow-500 text-center uppercase bg-neutral-700 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" className="p-2">
+                <th scope="col" className="p-2 ">
                     Coin
                 </th>
-                <th scope="col" className="p-2">
+                <th scope="col" className="p-2 ">
                     Price
                 </th>
                 <th scope="col" className="p-2">
@@ -73,7 +73,7 @@ const CoinsTable = () => {
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className='text-center	'>
         
         {
         	coins?.map(coin=>{
@@ -85,7 +85,7 @@ const CoinsTable = () => {
         	return  <tr className="bg-neutral-800 text-white border-b dark:bg-gray-800 dark:border-gray-700 font-intert" key={coin.symbol}>
 
                 <th scope="row" className=" font-medium p-3 dark:text-white md:w-64">
-                    <Link to={path}> <img src={coin.image} alt={coin.name} className='w-1/4'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span></Link>
+                    <Link to={path}> <img src={coin.image} alt={coin.name} className='w-1/4 mx-auto'/>{coin.name} <span className='text-xs text-slate-500'>{coin.symbol.toUpperCase()}</span></Link>
                 </th>
                 <td className="">
                     {symbol+coin.current_price}

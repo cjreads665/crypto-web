@@ -10,11 +10,13 @@ import SignUp from './components/Authentication/SignUp'
 import WithoutNav from './components/WithoutNav'
 import WithNav from './components/WithNav'
 import './App.css'
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <BrowserRouter>
+    <Toaster/>
     <div className='bg-zinc-900 text-white font-sans min-h-screen'>
     <Routes>
     <Route element={<WithoutNav />}>

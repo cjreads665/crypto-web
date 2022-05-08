@@ -5,6 +5,8 @@ import Homepage from './components/Homepage'
 import Coinpage from './components/Coinpage'
 import Searchpage from './components/Searchpage'
 import Login from './components/Authentication/Login'
+import SignUpLogIn from './components/Authentication/SignUpLogIn'
+import SignUp from './components/Authentication/SignUp'
 import WithoutNav from './components/WithoutNav'
 import WithNav from './components/WithNav'
 import './App.css'
@@ -16,7 +18,12 @@ function App() {
     <div className='bg-zinc-900 text-white font-sans min-h-screen'>
     <Routes>
     <Route element={<WithoutNav />}>
-      <Route path="/login" element={<Login />} />
+        
+      <Route path="/signuplogin" element={<SignUpLogIn />} >
+      <Route index element={<Login />} />
+      <Route path="/signuplogin/signup" element={<SignUp />} />
+      </Route>
+      
     </Route>
      <Route element={<WithNav />}>
     <Route path='/' exact element={<Homepage/>} />

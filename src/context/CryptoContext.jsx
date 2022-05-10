@@ -14,6 +14,7 @@ const CryptoContext = ({children}) => {
 	const [coins, setCoins] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [user,setUser] = useState(null)
+   const [open, setOpen] = useState(false)
 	const fetchCoins = async ()=>{
 		const {data} = await axios.get(CoinList(currency))
 		// console.log(data)
@@ -36,7 +37,7 @@ const CryptoContext = ({children}) => {
 	return (
 		<CrypCon.Provider value={{
 			currency,symbol,setCurrency,query,setQuery,coins, setCoins,loading, setLoading,fetchCoins,
-			user
+			user,open,setOpen
 
 		}} >
 			{children}

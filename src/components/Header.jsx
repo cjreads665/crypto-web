@@ -2,9 +2,11 @@ import React from 'react'
 import {useContext, useEffect} from 'react'
 import CryptoContext, {CrypCon} from '../context/CryptoContext'
 import AuthenModal from './Authentication/AuthenModal'
+import UserSideBar from './Authentication/UserSideBar'
+
 const Header = () => {
-	const {currency, setCurrency} = useContext(CrypCon)
-	console.log(currency)
+	const {currency, setCurrency,user} = useContext(CrypCon)
+	console.log(user)
 	return (
 		<header className='h-16 bg-zinc-900 flex items-center justify-between px-6'>
 			<a href={'/'}>
@@ -15,7 +17,7 @@ const Header = () => {
 				<option value="usd">USD</option>
 				<option value="inr">INR</option>
 			</select>
-			<AuthenModal/>
+			{user? <UserSideBar/>: <AuthenModal/>}
 		</header>
 	)
 }

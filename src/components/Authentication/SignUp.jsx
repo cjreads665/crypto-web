@@ -2,12 +2,13 @@ import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import toast from 'react-hot-toast';
 import {auth} from '../firebase'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
 	let [email,setEmail] = useState('')
 	let [password,setPassword] = useState('')
 	let [confirmPassword,setConfirmPassword] = useState('')
-	console.log(auth)
+	// console.log(auth)
 	const handleSubmit= async(e)=>{
 		e.preventDefault()
 		if(password!==confirmPassword){
@@ -15,10 +16,9 @@ const SignUp = () => {
 		return;
 		}
 		try{
-
-			const result = await createUserWithEmailAndPassword(auth,email,password)
-			toast.success('Account created Successfully!')
-			console.log(result)
+        const result = await createUserWithEmailAndPassword(auth,email,password)
+		toast.success('Account created Successfully!')
+		console.log(result)
 
 		}catch(err){
 		toast.error("Something went wrong!")
@@ -54,7 +54,7 @@ const SignUp = () => {
         <button type="submit" className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
             <span className="inline-block mr-2">Sign Up</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block">
-                <path stroke-linecap="round" strokeLinejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
         </button>
       </form>
@@ -66,7 +66,7 @@ const SignUp = () => {
           <Link to='/'>
                  <button className="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block align-text-top">
-                    <path stroke-linecap="round" strokeLinejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    <path strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
                 <span className="inline-block ml-1">Back to Homepage</span>
             </button>     	
